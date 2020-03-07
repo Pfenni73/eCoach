@@ -1,0 +1,26 @@
+﻿<Window x:Class="eCoach.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:eCoach"
+        mc:Ignorable="d"
+        Title="e-Coach" Height="450" Width="800">
+    <DockPanel>
+        <Label DockPanel.Dock="Top" Content="Kunden"/>
+        <Button DockPanel.Dock="Bottom" Content="Neuer Kunde" Command="{Binding CustomerSaveCommand}" />
+        <DataGrid Name="dg" ItemsSource="{Binding Customers}" AutoGenerateColumns="False">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Bearbeiten" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}" Command="{Binding EditCommand}" />
+                    <MenuItem Header="Löschen" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}" Command="{Binding DeleteCommand}" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Vorname" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Nachname" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Kunde seit" Binding="{Binding Since, StringFormat=\{0:dd.MM.yyyy\}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
