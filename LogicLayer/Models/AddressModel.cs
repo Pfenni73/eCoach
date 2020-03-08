@@ -11,8 +11,10 @@ namespace LogicLayer.Models
 {
     public class AddressModel : ModelBase
     {
-        private int idAddress;
         private const string tableName = "Address";
+
+#region Field Properties        
+        private int idAddress;
         public int IdCustomer
         {
             get { return idAddress; }
@@ -144,6 +146,7 @@ namespace LogicLayer.Models
                 }
             }
         }
+ #endregion
 
         public static AddressModel[] Load(IDbAccess dbAccess)
         {
