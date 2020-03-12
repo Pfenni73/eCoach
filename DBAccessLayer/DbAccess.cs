@@ -8,7 +8,7 @@ namespace DBAccessLayer
     {
 
 
-        private const string connectionString = @"Data Source=DESKTOP-GOCGBME\SQLEXPRESS;Initial Catalog=TestDB; Integrated Security=SSPI";
+        private const string connectionString = @"Data Source=DESKTOP-C75H9RN\SQLEXPRESS;Initial Catalog=eCoach; Integrated Security=SSPI";
 
         public void Delete(string sqlString)
         {

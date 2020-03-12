@@ -1,6 +1,7 @@
 ﻿using DBAccessLayer.Interfaces;
 using eCoach.Windows;
 using LogicLayer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -10,6 +11,7 @@ namespace eCoach.ViewModels
     public class CustomerViewModel : ViewModelBase
     {
         private ICommand saveCommand;
+        private BaseCommand doubleClickCommand;
         private BaseCommand deleteCommand;
         private BaseCommand editCommand;
         private IDbAccess dbAccess;
@@ -60,6 +62,26 @@ namespace eCoach.ViewModels
             {
                 return saveCommand ?? (saveCommand = new CommandHandler(() => ActionSave(), () => { return true; }));
             }
+        }
+
+        public BaseCommand DoubleClickCommand 
+        {
+            get
+            {
+                if (doubleClickCommand == null)
+                {
+                    doubleClickCommand = new BaseCommand((p) => true, (p) => ActionDoubleClick(p));
+                }
+                return doubleClickCommand;
+            }
+            set { doubleClickCommand = value; }
+        }
+
+        private void ActionDoubleClick(object p)
+        {
+            CustomerModel customer = (CustomerModel)p;
+            CustomerDetail customerDetail = new CustomerDetail(customer);
+            customerDetail.Show();
         }
 
         public BaseCommand DeleteCommand 

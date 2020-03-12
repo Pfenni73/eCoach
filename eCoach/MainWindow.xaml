@@ -9,7 +9,12 @@
     <DockPanel>
         <Label DockPanel.Dock="Top" Content="Kunden"/>
         <Button DockPanel.Dock="Bottom" Content="Neuer Kunde" Command="{Binding CustomerSaveCommand}" />
-        <DataGrid Name="dg" ItemsSource="{Binding Customers}" AutoGenerateColumns="False">
+        <DataGrid Name="dg" ItemsSource="{Binding Customers}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" IsReadOnly="True">
+            <DataGrid.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick"
+                Command="{Binding DoubleClickCommand}"
+                CommandParameter="{Binding Customers/}"/>
+            </DataGrid.InputBindings>
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Bearbeiten" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItem}" Command="{Binding EditCommand}" />

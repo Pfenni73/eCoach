@@ -1,4 +1,5 @@
 ﻿using eCoach.ViewModels;
+using LogicLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,11 @@ namespace eCoach
             CustomerEditViewModel customerEditViewModel = new CustomerEditViewModel(new DBAccessLayer.DbAccess(), customer);
             //customerEditViewModel.Customer = customer;
             return customerEditViewModel;
+        }
+
+        internal static object GetCustomerDetailViewModel(CustomerModel customer)
+        {
+            return new CustomerDetailViewModel(new DBAccessLayer.DbAccess(), customer);
         }
     }
 }
