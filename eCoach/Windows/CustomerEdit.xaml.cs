@@ -1,6 +1,9 @@
 ﻿using eCoach.Interfaces;
 using eCoach.ViewModels;
+using System;
+using System.Globalization;
 using System.Windows;
+using System.Windows.Data;
 
 namespace eCoach.Windows
 {
@@ -13,7 +16,6 @@ namespace eCoach.Windows
         {
             InitializeComponent();
             DataContext = ApplicationBuilder.GetCustomerEditViewModel(customer);
-            //((CustomerEditViewModel)DataContext).Customer = customer;
         }
     }
 }

@@ -23,6 +23,11 @@ namespace LogicLayer.Models
             }
         }
 
+        internal static CustomerModel Load(IDbAccess dbAccess, int customerId)
+        {
+            throw new NotImplementedException();
+        }
+
         private string firstName;
         public string FirstName
         {
@@ -73,10 +78,11 @@ namespace LogicLayer.Models
 
         public CustomerModel(DataRow dataRow)
         {
-            IdCustomer = (int)dataRow["IdCustomer"];
-            FirstName = (string)dataRow["FirstName"];
-            LastName = (string)dataRow["LastName"];
-            Since = (DateTime)dataRow["Since"];
+            UpdateFromRow(dataRow);
+            //IdCustomer = (int)dataRow["IdCustomer"];
+            //FirstName = (string)dataRow["FirstName"];
+            //LastName = (string)dataRow["LastName"];
+            //Since = (DateTime)dataRow["Since"];
         }
 
         public CustomerModel()

@@ -69,6 +69,7 @@
     <Compile Include="Windows\CustomerEdit.xaml.cs">
       <DependentUpon>CustomerEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\NullableValueConverter.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

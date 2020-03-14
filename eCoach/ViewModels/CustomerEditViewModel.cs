@@ -1,5 +1,6 @@
 ﻿using DBAccessLayer.Interfaces;
 using eCoach.Interfaces;
+using LogicLayer.BusinessModels;
 using LogicLayer.Models;
 using System.Windows;
 
@@ -22,6 +23,7 @@ namespace eCoach.ViewModels
         }
 
         private CustomerModel customer;
+        private AddressModel address;
         private IDbAccess dbAccess;
 
         public CustomerModel Customer
@@ -34,10 +36,26 @@ namespace eCoach.ViewModels
             }
         }
 
+        public AddressModel Address
+        {
+            get { return address; }
+            set
+            {
+                address = value;
+                OnPropertyChanged("Address");
+            }
+        }
+
         public CustomerEditViewModel(DBAccessLayer.DbAccess dbAccess, CustomerModel customer)
         {
             this.dbAccess = dbAccess;
             Customer = customer;
+            CustomerBusinessModel customerBusinessModel = CustomerBusinessModel.Load(dbAccess, Customer);
+            Address = customerBusinessModel.GetAddressModel(dbAccess);
+            if(Address == null)
+            {
+                Address = new AddressModel();
+            }
             SaveCommand = new BaseCommand((p) => true, (p) => ActionSave(p));
             QuitCommand = new BaseCommand((p) => true, (p) => ActionQuit(p));
         }
@@ -73,6 +91,7 @@ namespace eCoach.ViewModels
         public void ActionSave(object o)
         {
             Customer.Save(dbAccess);
+            Address.Save(dbAccess, Customer.IdCustomer);
             ((Window)o).DialogResult = true;
             CloseWindow((ICloseable)o);
         }

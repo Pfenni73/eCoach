@@ -41,14 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessModels\CustomerBusinessModel.cs" />
     <Compile Include="Interfaces\ModelBase.cs" />
     <Compile Include="Models\AddressModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BusinessModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DBAccessLayer\DBAccessLayer.csproj">
       <Project>{2e625a57-e23f-4ef4-90c8-1cd36a7469f9}</Project>
