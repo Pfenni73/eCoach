@@ -13,8 +13,35 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical">
             <Label Content="Kunde"></Label>
-            <TextBox Text="{Binding Customer.FirstName}"/>
-            <TextBox Text="{Binding Customer.LastName}"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Customer.FirstName}"/>
+                <TextBox Text="{Binding Customer.LastName}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Geburtsdatum:"/>
+                <TextBox Text="{Binding Customer.Birthdate, StringFormat=\{0:dd.MM.yyyy\}}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Address.Street}"/>
+                <TextBox Text="{Binding Address.Number}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Address.ZipCode}"/>
+                <TextBox Text="{Binding Address.City}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Telefon Festnetz:"/>
+                <TextBox Text="{Binding Address.PhoneHome}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Telefon Mobile:"/>
+                <TextBox Text="{Binding Address.PhoneMobile}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Telefon Geschäft:"/>
+                <TextBox Text="{Binding Address.PhoneOffice}"/>
+            </StackPanel>
+            
         </StackPanel>
         
         <Label Content="Sitzungen" Grid.Column="1"/>

@@ -28,26 +28,30 @@
                 <RowDefinition Height="25"></RowDefinition>
                 <RowDefinition Height="25"></RowDefinition>
                 <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
             </Grid.RowDefinitions>
             <Label Content="Vorname:"/>
             <TextBox x:Name="FirstName" Grid.Column="1" Text="{Binding Customer.FirstName}"/>
             <Label Grid.Row="1" Content="Nachname:"/>
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Customer.LastName}"/>
-            <Label Grid.Row="2" Content="Strasse / Nr.:"/>
-            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Width="Auto">
+            <Label Grid.Row="2" Content="Geburtsdatum:"/>
+            <!--<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Customer.Birthdate,Converter={StaticResource NullableValueConverter}, StringFormat=\{0:dd.MM.yyyy\}}"/>-->
+            <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding Customer.Birthdate}"/>
+            <Label Grid.Row="3" Content="Strasse / Nr.:"/>
+            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Width="Auto">
                 <TextBox Text="{Binding Address.Street}" Width="150"/>
                 <TextBox Text="{Binding Address.Number, Converter={StaticResource NullableValueConverter}}" Width="30"/>
             </StackPanel>
-            <Label Grid.Row="3" Content="PLZ:"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Address.ZipCode, Converter={StaticResource NullableValueConverter}}"/>
-            <Label Grid.Row="4" Content="Ort:"/>
-            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Address.City}"/>
-            <Label Grid.Row="5" Content="Telefon Festnetz:"/>
-            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Address.PhoneHome, Converter={StaticResource NullableValueConverter}}"/>
-            <Label Grid.Row="6" Content="Telefon Mobile:"/>
-            <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Address.PhoneMobile, Converter={StaticResource NullableValueConverter}}"/>
-            <Label Grid.Row="7" Content="Telefon Geschäft:"/>
-            <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Address.PhoneOffice, Converter={StaticResource NullableValueConverter}}"/>
+            <Label Grid.Row="4" Content="PLZ:"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Address.ZipCode, Converter={StaticResource NullableValueConverter}}"/>
+            <Label Grid.Row="5" Content="Ort:"/>
+            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Address.City}"/>
+            <Label Grid.Row="6" Content="Telefon Festnetz:"/>
+            <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Address.PhoneHome, Converter={StaticResource NullableValueConverter}}"/>
+            <Label Grid.Row="7" Content="Telefon Mobile:"/>
+            <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Address.PhoneMobile, Converter={StaticResource NullableValueConverter}}"/>
+            <Label Grid.Row="8" Content="Telefon Geschäft:"/>
+            <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding Address.PhoneOffice, Converter={StaticResource NullableValueConverter}}"/>
         </Grid>
     </DockPanel>
 </Window>

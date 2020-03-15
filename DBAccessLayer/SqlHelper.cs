@@ -18,6 +18,26 @@ namespace DBAccessLayer
             return number.ToString();
         }
 
+        public static string GetSqlString(string text)
+        {
+            return $"'{text}'";
+        }
+
+        public static string GetSqlString(DateTime dateTime)
+        {
+            return $"Convert(date,'{dateTime.Date}',103)";
+        }
+
+        public static string GetSqlString(DateTime? dateTime)
+        {
+            if(dateTime == null)
+            {
+                return "null";
+            }
+            DateTime tmpDate = dateTime ?? DateTime.MinValue;
+            return $"Convert(date,'{tmpDate.Date}',103)";
+        }
+
         public static int? GetValue(DataRow dataRow, string fieldName)
         {
             return (int?)((dataRow[fieldName] != DBNull.Value) ? dataRow[fieldName] : null);

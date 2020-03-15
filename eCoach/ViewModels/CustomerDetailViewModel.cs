@@ -1,4 +1,5 @@
 ﻿using DBAccessLayer;
+using LogicLayer.BusinessModels;
 using LogicLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace eCoach.ViewModels
     {
         private DbAccess dbAccess;
         private CustomerModel customer;
+        private AddressModel address;
         public CustomerModel Customer 
         {
             get { return customer; }
@@ -21,10 +23,22 @@ namespace eCoach.ViewModels
                 OnPropertyChanged("Customer");
             }
         }
+
+        public AddressModel Address
+        {
+            get { return address; }
+            set 
+            { 
+                address = value;
+                OnPropertyChanged("Address");
+            }
+        }
         public CustomerDetailViewModel(DbAccess dbAccess, CustomerModel customer)
         {
             this.dbAccess = dbAccess;
             this.Customer = customer;
+            CustomerBusinessModel customerBusinessModel = CustomerBusinessModel.Load(dbAccess, customer);
+            Address = customerBusinessModel.GetAddressModel(dbAccess);
         }
     }
 }

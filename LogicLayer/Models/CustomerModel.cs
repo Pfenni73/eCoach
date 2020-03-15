@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using DBAccessLayer.Interfaces;
+using DBAccessLayer;
 
 namespace LogicLayer.Models
 {
@@ -56,11 +57,7 @@ namespace LogicLayer.Models
             }
         }
 
-        public void Delete(IDbAccess dbAccess)
-        {
-            string sql = $"DELETE FROM {tableName} WHERE IdCustomer = {IdCustomer}";
-            dbAccess.Delete(sql);
-        }
+        
 
         private DateTime since;
         public DateTime Since
@@ -76,13 +73,23 @@ namespace LogicLayer.Models
             }
         }
 
+        private DateTime? birthdate;
+        public DateTime? Birthdate
+        {
+            get { return birthdate; }
+            set
+            {
+                if(birthdate != value)
+                {
+                    birthdate = value;
+                    OnPropertyChanged("Birthdate");
+                }
+            }
+        }
+
         public CustomerModel(DataRow dataRow)
         {
             UpdateFromRow(dataRow);
-            //IdCustomer = (int)dataRow["IdCustomer"];
-            //FirstName = (string)dataRow["FirstName"];
-            //LastName = (string)dataRow["LastName"];
-            //Since = (DateTime)dataRow["Since"];
         }
 
         public CustomerModel()
@@ -127,17 +134,23 @@ namespace LogicLayer.Models
         {
             if(IdCustomer == 0)
             {
-                string sqlString = $"insert {tableName} (FirstName, LastName, Since) values('{FirstName}', '{LastName}', GetDate())";
+                string sqlString = $"insert {tableName} (FirstName, LastName, Since, Birthdate) values('{FirstName}', '{LastName}', GetDate(), {SqlHelper.GetSqlString(Birthdate)})";
                 dbAccess.InsertDb(sqlString);
                 DataTable dataTable = dbAccess.GetDataTable($"SELECT TOP 1 * FROM {tableName} ORDER BY IdCustomer DESC");
                 this.UpdateFromRow(dataTable.Rows[0]);
             }
             else
             {
-                string sqlString = $"UPDATE {tableName} SET FirstName = '{FirstName}', LastName = '{LastName}' WHERE idCustomer = {IdCustomer}";
+                string sqlString = $"UPDATE {tableName} SET FirstName = {SqlHelper.GetSqlString(FirstName)}, LastName = {SqlHelper.GetSqlString(LastName)}, Birthdate = {SqlHelper.GetSqlString(Birthdate)} WHERE idCustomer = {IdCustomer}";
                 dbAccess.Update(sqlString);
             }
             return 0;
+        }
+
+        public void Delete(IDbAccess dbAccess)
+        {
+            string sql = $"DELETE FROM {tableName} WHERE IdCustomer = {IdCustomer}";
+            dbAccess.Delete(sql);
         }
 
         private void UpdateFromRow(DataRow dataRow)
@@ -146,6 +159,7 @@ namespace LogicLayer.Models
             FirstName = (string)dataRow["FirstName"];
             LastName = (string)dataRow["LastName"];
             Since = (DateTime)dataRow["Since"];
+            Birthdate = dataRow.Field<DateTime?>("Birthdate");
         }
     }
 }
