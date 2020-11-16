@@ -44,6 +44,8 @@
     <Compile Include="BusinessModels\CustomerBusinessModel.cs" />
     <Compile Include="Interfaces\ModelBase.cs" />
     <Compile Include="Models\AddressModel.cs" />
+    <Compile Include="Models\BusinessCaseCoachingModel.cs" />
+    <Compile Include="Models\BusinessCaseModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
