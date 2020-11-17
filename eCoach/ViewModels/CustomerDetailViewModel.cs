@@ -51,6 +51,7 @@ namespace eCoach.ViewModels
             this.Customer = customer;
             CustomerBusinessModel customerBusinessModel = CustomerBusinessModel.Load(dbAccess, customer);
             Address = customerBusinessModel.GetAddressModel(dbAccess);
+            Coachings = BusinessCaseCoachingModel.Load(dbAccess).ToList<BusinessCaseCoachingModel>();
         }
     }
 }
