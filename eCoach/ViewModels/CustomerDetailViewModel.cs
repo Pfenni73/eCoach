@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace eCoach.ViewModels
 {
+    /// <summary>
+    /// ViewModel für das Window CustomerDetail.
+    /// Stellt die Kundendaten und die Coaching-Sitzungen zur Verfügung.
+    /// </summary>
     public class CustomerDetailViewModel : ViewModelBase
     {
         private DbAccess dbAccess;
@@ -26,6 +30,9 @@ namespace eCoach.ViewModels
             }
         }
 
+        /// <summary>
+        /// Adresse des Kunden.
+        /// </summary>
         public AddressModel Address
         {
             get { return address; }
@@ -36,6 +43,9 @@ namespace eCoach.ViewModels
             }
         }
 
+        /// <summary>
+        /// Collection mit den Coaching Sitzungen des Kunden.
+        /// </summary>
         public ObservableCollection<BusinessCaseCoachingModel> Coachings
         {
             get { return coachings; }
