@@ -43,7 +43,10 @@
             </StackPanel>
             
         </StackPanel>
-        
-        <Label Content="Sitzungen" Grid.Column="1"/>
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <Label Content="Sitzungen"/>
+            <DataGrid ItemsSource="{Binding Coachings}">
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </Window>

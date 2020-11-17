@@ -28,6 +28,9 @@ namespace LogicLayer.Models
         }
 
         private DateTime date;
+        /// <summary>
+        /// Datum des Business Case
+        /// </summary>
         public DateTime Date
         {
             get { return date; }
